@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cyber Security Linux Club</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="/images/logo.png">
 </head>
+
 <body>
     <header>
         <div class="container">
@@ -29,7 +32,8 @@
     <section id="about">
         <div class="container">
             <h2>About Us</h2>
-            <p>We are dedicated to promoting cyber security awareness and Linux skills through workshops, events, and hands-on projects.</p>
+            <p>We are dedicated to promoting cyber security awareness and Linux skills through workshops, events, and
+                hands-on projects.</p>
             <img src="images/about.jpg" alt="About Us">
         </div>
     </section>
@@ -39,23 +43,22 @@
             <form id="signup-form">
                 <label for="name">Full Name:</label>
                 <input type="text" id="name" name="name" required>
-                
+
                 <label for="email">Email Address:</label>
                 <input type="email" id="email" name="email" required>
-                
+
                 <label for="department">Department:</label>
                 <input type="text" id="department" name="department" required>
-                
+
                 <label for="role">Role of Interest:</label>
                 <select id="role" name="role">
-                    <option value="member">Member</option>
                     <option value="event-coordinator">Event Coordinator</option>
                     <option value="treasurer">Treasurer</option>
                 </select>
-                
+
                 <label for="message">Why You’re Interested:</label>
                 <textarea id="message" name="message" rows="4" required></textarea>
-                
+
                 <button type="submit">Submit</button>
             </form>
         </div>
@@ -63,9 +66,26 @@
     <section id="contact">
         <div class="container">
             <h2>Contact Us</h2>
-            <p>For more information, email us at <a href="mailto:info@cyberclub.com">info@cyberclub.com</a>.</p>
+            <p>For more information, email us at <a href="mailto:info@cyberclub.com">info@cyberclub.com</a>.</p> OR
+        </div>
+        <br>
+        <div class="contact-links">
+            <a href="https://discord.gg/your-invite-link" target="_blank" class="contact-link">
+                <img src="images/discord.png" alt="Discord Logo">
+                <span>Join us on Discord</span>
+            </a>
+            <a href="https://wa.me/your-whatsapp-number" target="_blank" class="contact-link">
+                <img src="images/whatsapp.jpg" alt="WhatsApp Logo">
+                <span>Join on WhatsApp</span>
+            </a>
+            <a href="https://nas.io/your-nasio-link" target="_blank" class="contact-link">
+                <img src="images/nas.jpg" alt="NASIO Logo">
+                <span>Follow us on NASIO</span>
+            </a>
+        </div>
         </div>
     </section>
+
     <footer>
         <div class="container">
             <p>&copy; 2024 Cyber Security Linux Club. All rights reserved.</p>
@@ -73,4 +93,5 @@
     </footer>
     <script src="script.js"></script>
 </body>
+
 </html>
