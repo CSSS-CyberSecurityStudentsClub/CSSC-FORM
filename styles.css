@@ -92,7 +92,7 @@ nav ul li a:hover {
     display: inline-block;
     padding: 10px 20px;
     color: #fff;
-    background-color: #e74c3c;
+    background-color: #3cb9e7;
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
@@ -100,7 +100,7 @@ nav ul li a:hover {
 }
 
 .cta-button:hover {
-    background-color: #c0392b;
+    background-color: #2b7fc0;
     transform: scale(1.05);
 }
 
@@ -145,7 +145,7 @@ form label {
 }
 
 form input, form select, form textarea {
-    width: 100%;
+    width: 98%;
     padding: 12px;
     margin-top: 8px;
     border: none;
@@ -167,7 +167,7 @@ form button {
     width: 100%;
     padding: 12px;
     margin-top: 20px;
-    background-color: #e74c3c;
+    background-color: #3cb9e7;
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -177,7 +177,7 @@ form button {
 }
 
 form button:hover {
-    background-color: #c0392b;
+    background-color: #2b7fc0;
     transform: scale(1.05);
 }
 
