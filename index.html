@@ -40,27 +40,29 @@
     <section id="join">
         <div class="container">
             <h2>Join Us</h2>
-            <form id="signup-form">
+            <form id="signup-form" action="submit.php" method="POST">
                 <label for="name">Full Name:</label>
                 <input type="text" id="name" name="name" required>
-
+            
                 <label for="email">Email Address:</label>
                 <input type="email" id="email" name="email" required>
-
+            
                 <label for="department">Department:</label>
                 <input type="text" id="department" name="department" required>
-
+            
                 <label for="role">Role of Interest:</label>
                 <select id="role" name="role">
+                    <option value="member">Member</option>
                     <option value="event-coordinator">Event Coordinator</option>
                     <option value="treasurer">Treasurer</option>
                 </select>
-
+            
                 <label for="message">Why You’re Interested:</label>
                 <textarea id="message" name="message" rows="4" required></textarea>
-
+            
                 <button type="submit">Submit</button>
             </form>
+            
         </div>
     </section>
     <section id="contact">
