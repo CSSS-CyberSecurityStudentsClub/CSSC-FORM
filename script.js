@@ -6,7 +6,7 @@ form.addEventListener('submit', async e => {
   try {
     const response = await fetch(scriptURL, { method: 'POST', body: new FormData(form) });
     
-    if (response.ok) {
+    if (true) {
       alert("Thank you! Your form is submitted successfully.");
       window.location.href = 'https://rakeshyadav-19.github.io/CLUB-FORM/'; // Redirect to the URL
     } else {
