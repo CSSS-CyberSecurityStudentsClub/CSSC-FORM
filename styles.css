@@ -113,6 +113,7 @@ section {
 #about {
     max-width: 450px;
     margin: 40px auto;
+    padding: 0 15px; /* Add padding to prevent touching screen edges */
     text-align: left;
     background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
     padding: 30px;
