@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyber Security Linux Club</title>
+    <title>Cyber Security & Linux Users Club</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/x-icon" href="images/logo.png">
 </head>
@@ -12,7 +12,7 @@
 <body>
     <header>
         <div class="container">
-            <h1>Cyber Security Linux Club</h1>
+            <h1 href="#hero" id="scrollToTop">Cyber Security & Linux Users Club</h1>
             <nav>
                 <ul>
                     <li><a href="#about">About</a></li>
@@ -24,7 +24,7 @@
     </header>
     <section id="hero">
         <div class="hero-content">
-            <h2>Welcome to the Cyber Security Linux Club</h2>
+            <h2>Welcome to the Cyber Security & Linux Users Club</h2>
             <p>Join us to explore the world of cyber security, Linux, and open-source technology.</p>
             <a href="#join" class="cta-button">Apply</a>
         </div>
@@ -32,54 +32,79 @@
     <section id="about">
         <div class="container">
             <h2 style="text-align: center;">About Us</h2>
-            <p>We are dedicated to promoting cyber security awareness and Linux skills through workshops, events, and hands-on projects.</p>
-            <p>We're seeking passionate members to help manage and grow our Cyber Security Linux Club. As a committee member, you'll play a key role in organizing events, leading projects, and promoting cyber security within our community. Our club welcomes everyone—whether you're experienced or just starting out in cyber security or Linux. Join us, make an impact, and grow alongside a community of learners and enthusiasts. Passion and a willingness to learn are what matter most!</p>
+            <p>We are dedicated to promoting cyber security awareness and Linux skills through workshops, events,and
+                hands-on projects.</p>
+            <p>We're seeking passionate members to help manage and grow our Cyber Security Linux Club. As a committee
+                member, you'll play a key role in organizing events, leading projects, and promoting cyber security
+                within our community.</p>
+            <p>Our club welcomes everyone—whether you're experienced or just starting out in cyber security or Linux.
+                Join us, make an impact, and grow alongside a community of learners and enthusiasts. Passion and a
+                willingness to learn are what matter most!</p>
             <!-- <img src="images/about.jpg" alt="About Us"> -->
         </div>
     </section>
     <section id="join">
         <div class="container">
-            <h2>Apply Here</h2>
-            <form id="signup-form" action="https://script.google.com/macros/s/AKfycbw0sAQ0AP-Z7hfu1HyGBsoTXEcLRCaPFEf4IsaTDhSjEwBdlpXT9HO9PTJLLZwc4T_F/exec" method="POST">
-                <img src="images/form-logo-f.png" alt="About Us">
+            <form id="signup-form"
+                action="https://script.google.com/macros/s/AKfycbw0sAQ0AP-Z7hfu1HyGBsoTXEcLRCaPFEf4IsaTDhSjEwBdlpXT9HO9PTJLLZwc4T_F/exec"
+                method="POST">
+                <h2 style="color: white;text-align: center;font-size: 1.8em">Apply Here</h2>
+                <img src="images/form-logo.png" alt="About Us" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0);">
+
                 <label for="name">Full Name:</label>
                 <input type="text" id="name" name="name" required>
-            
-                <label for="email">Email Address:</label>
-                <input type="email" id="email" name="email" required>
-            
+
+                <label for="Phone-Number">Phone Number:</label>
+                <input type="tel" id="Phone-Number" name="Phone-Number" required pattern="\d{10}" title="Please enter a 10-digit phone number">
+
+                <label for="Year">Year:</label>
+                <input type="number" id="Year" name="Year" required>
+
                 <label for="department">Department:</label>
                 <input type="text" id="department" name="department" required>
-            
+
                 <label for="role">Role of Interest:</label>
-                <select id="role" name="role">
+                <select id="role" name="role" required>
                     <option value="Vice-President">Vice President</option>
                     <option value="Secretary">Secretary</option>
                     <option value="treasurer">Treasurer</option>
                     <option value="Technical-Head">Technical Head</option>
                     <option value="Vice-Technical-Head">Vice Technical Head</option>
                     <option value="event-coordinator">Event Coordinator</option>
-                </select required>
-            
-                <label for=" ">Why You’re Interested:</label>
+                </select>
+
+                <label for="message">Why You’re Interested:</label>
                 <textarea id="message" name="message" rows="4" required></textarea>
-            
-                <button type="submit">Submit</button>
+
+                <button type="submit" id="submitButton">
+                    Submit
+                    <span class="loading-spinner" id="loadingSpinner" style="display: none;"></span>
+                </button>
             </form>
-            
+
+
         </div>
     </section>
+
+    <!-- Modal Structure -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <h2>Thank You!</h2>
+            <p>Your form has been submitted successfully.</p>
+            <p>Click on button below to join whatsapp group for further updates</p>
+            <button id="okButton" class="ok-button">JOIN</button>
+        </div>
+    </div>
+
+
     <section id="contact">
         <div class="container">
             <h2>Contact Us</h2>
-            <p>For more information, email us at <a href="mailto:info@cyberclub.com">rakeshyadavry087@gmail.com</a>.</p> OR
+            <p>For more information, email us at <a href="mailto:info@cyberclub.com">rakeshyadavry087@gmail.com</a>.</p>
+            OR
         </div>
         <br>
         <div class="contact-links">
-            <a href="https://discord.gg/EbjRASuBAt" target="_blank" class="contact-link">
-                <img src="images/discord.png" alt="Discord Logo">
-                <span>Join us on Discord</span>
-            </a>
             <a href="https://chat.whatsapp.com/K8YsAPh67G98PdubGo2TnI" target="_blank" class="contact-link">
                 <img src="images/whatsapp.png" alt="WhatsApp Logo">
                 <span>Join on WhatsApp</span>
@@ -91,11 +116,10 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Cyber Security Linux Club. All rights reserved.</p>
+            <p>&copy; 2024 Cyber Security & Linux Users Club. All rights reserved.</p>
         </div>
     </footer>
     <script src="script.js"></script>
 </body>
 
 </html>
-
