@@ -111,7 +111,7 @@ section {
 }
 
 #about {
-    max-width: 600px;
+    max-width: 450px;
     margin: 40px auto;
     text-align: left;
     background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
