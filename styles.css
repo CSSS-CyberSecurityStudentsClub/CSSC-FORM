@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: #333;
+    /* color: #333; */
     background: linear-gradient(to right, #759dd9, #e0e0e0);
     /* Gradient background */
 }
@@ -116,44 +116,53 @@ section {
 }
 
 #about {
-    max-width: 450px;
-    margin: 40px auto;
-    padding: 0 15px;
-    /* Add padding to prevent touching screen edges */
+    color: white;
+    max-width: 90%; /* Adjust max-width for smaller screens */
+    margin: 20px auto; /* Add margin on top and bottom, auto left/right to center */
+    padding: 20px; /* Add padding inside the section */
     text-align: left;
-    background: rgba(255, 255, 255, 0.1);
-    /* Semi-transparent background */
-    padding: 30px;
+    background: rgba(255, 255, 255, 0.1); /* Adjust transparency for better readability */
     border-radius: 12px;
-    backdrop-filter: blur(12px);
-    /* Blur effect */
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    /* Subtle border */
+    backdrop-filter: blur(8px); /* Reduce blur effect if needed */
+    border: 1px solid white;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    /* Shadow for depth */
     transition: box-shadow 0.3s ease;
     position: relative;
     z-index: 2;
-    /* Ensures content is above the background but below the header */
 }
 
 #about:hover {
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
-    /* Shadow effect on hover */
 }
 
 #about h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-    color: #fff;
+    font-size: 1.8em; /* Adjust font size for smaller screens */
+    margin-bottom: 15px;
+    /* color: #333; Ensure good contrast */
 }
 
 #about p {
     font-size: 1em;
-    color: #fff;
     line-height: 1.6;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
+
+/* Responsive Design: Mobile adjustments */
+@media (max-width: 600px) {
+    #about {
+        max-width: 80%; /* Allow full width on small screens */
+        padding: 15px; /* Adjust padding */
+    }
+
+    #about h2 {
+        font-size: 1.5em; /* Smaller font size for mobile */
+    }
+
+    #about p {
+        font-size: 0.9em; /* Smaller font size for mobile */
+    }
+}
+
 
 section img {
     display: block;
@@ -176,7 +185,7 @@ form {
     border-radius: 12px;
     backdrop-filter: blur(12px);
     /* Enhanced blur effect */
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid white;
     /* Subtle border */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     /* Deep shadow for depth */
