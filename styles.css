@@ -10,7 +10,6 @@ body {
 
 header {
     background-color: rgba(44, 62, 80, 0.8);
-    /* Semi-transparent header for better readability */
     color: #ecf0f1;
     padding: 10px 0;
     position: fixed;
@@ -20,18 +19,23 @@ header {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     z-index: 1000;
     /* Ensures header is above other content */
+    display: flex;
+    flex-direction: column; /* Stack heading and navigation vertically */
+    align-items: center; /* Center items horizontally */
 }
 
 header .container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column; /* Stack heading and navigation vertically */
+    align-items: center; /* Center items horizontally */
     padding: 0 20px;
+    width: 100%; /* Ensure full width */
 }
 
 header h1 {
     margin: 0;
-    font-size: 1em;
+    font-size: 1.8em;
+    text-align: center;
 }
 
 nav ul {
@@ -39,21 +43,44 @@ nav ul {
     margin: 0;
     padding: 0;
     display: flex;
+    flex-wrap: nowrap; /* Prevent wrapping of links */
+    justify-content: center; /* Center links horizontally */
+    gap: 20px; /* Space between links */
 }
 
 nav ul li {
-    margin-left: 20px;
+    margin: 0; /* Remove margin between items */
 }
 
 nav ul li a {
     color: #ecf0f1;
     text-decoration: none;
     font-weight: bold;
+    font-size: 1em;
 }
 
 nav ul li a:hover {
     text-decoration: underline;
 }
+
+/* Responsive Design: Mobile adjustments */
+@media (min-width: 600px) {
+    header {
+        flex-direction: row; /* Stack heading and navigation horizontally on larger screens */
+    }
+
+    header .container {
+        flex-direction: row; /* Align heading and navigation side by side */
+        justify-content: space-between; /* Space between heading and navigation */
+        align-items: center; /* Center items vertically */
+    }
+
+    nav ul {
+        flex-direction: row; /* Align links horizontally */
+        gap: 20px; /* Space between links */
+    }
+}
+
 
 #hero {
     background: url('images/hero.jpg') no-repeat center center/cover;
