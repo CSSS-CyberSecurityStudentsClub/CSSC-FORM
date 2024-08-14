@@ -31,7 +31,7 @@ header .container {
 
 header h1 {
     margin: 0;
-    font-size: 1.8em;
+    font-size: 1em;
 }
 
 nav ul {
@@ -362,9 +362,9 @@ footer {
 }
 
 .contact-link img {
-    height: 40px;
+    height: 60px;
     width: auto;
-    margin-bottom: 12px;
+    margin: 0px;
 }
 
 .contact-link span {
