@@ -3,49 +3,22 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* color: #333; */
-    background: linear-gradient(to right, #759dd9, #e0e0e0);
-    /* Gradient background */
+    background: linear-gradient(to bottom, #3b85f3, #a4c3f1);
+    /* Gradient starts with a darker blue (#446ba5) and transitions to white (#ffffff) */
 }
 
-header {
-    background-color: rgba(44, 62, 80, 0.8);
-    color: #ecf0f1;
-    padding: 10px 0;
+/* #myVideo {
     position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    /* Ensures header is above other content */
-    display: flex;
-    flex-direction: column; /* Stack heading and navigation vertically */
-    align-items: center; /* Center items horizontally */
-}
-
-header .container {
-    display: flex;
-    flex-direction: column; /* Stack heading and navigation vertically */
-    align-items: center; /* Center items horizontally */
-    padding: 0 20px;
-    width: 100%; /* Ensure full width */
-}
-
-header h1 {
-    margin: 0;
-    font-size: 1.8em;
-    text-align: center;
-}
+    right: 0;
+    bottom: 0;
+} */
 
 #hero {
-    background: url('images/hero.jpg') no-repeat center center/cover;
     color: #fff;
     text-align: center;
-    padding: 100px 20px;
+    padding: 30px 20px;
     position: relative;
     z-index: 1;
-    /* Ensures hero is below header and above other content */
 }
 
 #hero::before {
@@ -55,7 +28,6 @@ header h1 {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
 
@@ -94,19 +66,23 @@ header h1 {
 section {
     padding: 60px 20px;
     text-align: center;
-    margin-top: 120px;
-    /* Adjust to push content below header */
 }
 
 #about {
     color: white;
-    max-width: 90%; /* Adjust max-width for smaller screens */
-    margin: 20px auto; /* Add margin on top and bottom, auto left/right to center */
-    padding: 20px; /* Add padding inside the section */
-    text-align: left;
-    background: rgba(255, 255, 255, 0.1); /* Adjust transparency for better readability */
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: left;#myVideo {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%; 
+        min-height: 100%;
+      }
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 12px;
-    backdrop-filter: blur(8px); /* Reduce blur effect if needed */
+    backdrop-filter: blur(8px);
     border: 1px solid white;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     transition: box-shadow 0.3s ease;
@@ -119,9 +95,8 @@ section {
 }
 
 #about h2 {
-    font-size: 1.8em; /* Adjust font size for smaller screens */
+    font-size: 1.8em;
     margin-bottom: 15px;
-    /* color: #333; Ensure good contrast */
 }
 
 #about p {
@@ -133,54 +108,45 @@ section {
 /* Responsive Design: Mobile adjustments */
 @media (max-width: 600px) {
     #about {
-        max-width: 80%; /* Allow full width on small screens */
-        padding: 15px; /* Adjust padding */
+        max-width: 80%;
+        padding: 15px;
     }
 
     #about h2 {
-        font-size: 1.5em; /* Smaller font size for mobile */
+        font-size: 1.5em;
     }
 
     #about p {
-        font-size: 0.9em; /* Smaller font size for mobile */
+        font-size: 0.9em;
     }
 }
-
 
 section img {
     display: block;
     max-width: 80%;
     height: 250px;
     border-radius: 8px;
-    margin: 20px auto; /* Center the image horizontally */
+    margin: 20px auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-
 form {
     max-width: 600px;
-    margin: 40px auto;
-    /* Space between form and other content */
+    margin: 0px auto;
     text-align: left;
     background: rgba(255, 255, 255, 0.1);
-    /* Semi-transparent background */
     padding: 30px;
     border-radius: 12px;
     backdrop-filter: blur(12px);
-    /* Enhanced blur effect */
     border: 1px solid white;
-    /* Subtle border */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    /* Deep shadow for depth */
     transition: box-shadow 0.3s ease;
     position: relative;
     z-index: 2;
-    /* Ensures form is above background but below header */
 }
 
 form:hover {
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
-    /* Shadow effect on hover */
 }
 
 form label {
@@ -200,7 +166,6 @@ form textarea {
     border-radius: 8px;
     font-size: 1em;
     background: rgba(255, 255, 255, 0.8);
-    /* Slightly opaque background */
     color: #333;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -210,9 +175,7 @@ form select:focus,
 form textarea:focus {
     outline: none;
     background-color: #fff;
-    /* Full opacity on focus */
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-    /* Shadow effect on focus */
 }
 
 form button {
@@ -251,44 +214,35 @@ form button:hover {
     justify-content: center;
 }
 
-
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
-
-
 
 /* Modal Styles */
 .modal {
     display: none;
-    /* Hidden by default */
     position: fixed;
-    /* Stay in place */
     z-index: 1000;
-    /* Sit on top */
     left: 0;
     top: 0;
     width: 100%;
-    /* Full width */
     height: 100%;
-    /* Full height */
     overflow: auto;
-    /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0);
-    /* Fallback color */
     background-color: rgba(0, 0, 0, 0.4);
-    /* Black w/ opacity */
 }
 
 .modal-content {
     background-color: #fefefe;
     margin: 15% auto;
-    /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-    /* Could be more or less, depending on screen size */
     max-width: 500px;
     border-radius: 8px;
     text-align: center;
@@ -311,51 +265,39 @@ form button:hover {
     transform: scale(1.05);
 }
 
-
-
 footer {
-    background-color: rgba(44, 62, 80, 0.8);
-    /* Semi-transparent footer for consistency */
-    color: #ecf0f1;
+    background-color: #b2d0fd;
+    color: #333;
     text-align: center;
     padding: 20px 0;
     position: relative;
 }
 
 .contact-links {
+    /* height: 60px;? */
+    /* width: 50%; */
     display: flex;
     justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
 }
 
 .contact-link {
+    padding: 0px 12px;
     display: flex;
     align-items: center;
-    flex-direction: column;
     text-decoration: none;
     color: #333;
     background: rgba(255, 255, 255, 0.8);
-    /* Semi-transparent background */
-    padding: 10px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* Shadow for depth */
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .contact-link img {
     height: 60px;
-    width: auto;
-    margin: 0px;
-}
-
-.contact-link span {
-    font-size: 1em;
 }
 
 .contact-link:hover {
-    background-color: #e0e0e0;
+    background-color: #45ed7d;
+    color: #fff;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    /* Shadow effect on hover */
 }
