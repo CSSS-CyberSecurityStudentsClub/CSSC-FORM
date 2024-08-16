@@ -298,3 +298,13 @@ footer {
     color: #fff;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
+
+#countdown {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+#countdown #time {
+    font-size: 1em;
+}

@@ -88,3 +88,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const countdownElement = document.getElementById('time');
+    
+    // Target date: August 22, 2024, 12:00 AM
+    const targetDate = new Date('August 22, 2024 00:00:00').getTime();
+
+    // Update the countdown every second
+    const countdownInterval = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        // Calculate time components
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the result
+        countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+        // If the countdown is over, display zero
+        if (distance < 0) {
+            clearInterval(countdownInterval);
+            countdownElement.innerHTML = "0d 0h 0m 0s";
+        }
+    }, 1000);
+});
