@@ -7,12 +7,9 @@ body {
     /* Gradient starts with a darker blue (#446ba5) and transitions to white (#ffffff) */
 }
 
-/* #myVideo {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-} */
-
+h2{
+    text-align: center;
+}
 #hero {
     color: #fff;
     text-align: center;
