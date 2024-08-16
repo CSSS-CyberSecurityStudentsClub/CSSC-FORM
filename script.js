@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleLoading(false);
             if (data.result === 'success') {
                 showModal();
+                signupForm.reset(); // Clears the form inputs
             } else {
                 alert('Submission failed. Please try again.');
             }
