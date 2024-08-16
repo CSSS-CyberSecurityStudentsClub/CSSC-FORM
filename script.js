@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleLoading(false);
             if (data.result === 'success') {
                 showModal();
-                signupForm.reset(); // Clears the form inputs
+                clearForm(); // Manually clears the form inputs
             } else {
                 alert('Submission failed. Please try again.');
             }
@@ -70,5 +70,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function hideModal() {
         successModal.style.display = 'none';
+    }
+
+    function clearForm() {
+        // Get all form elements
+        const elements = signupForm.elements;
+
+        // Iterate over form elements and clear their values
+        for (let i = 0; i < elements.length; i++) {
+            const element = elements[i];
+            if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA' || element.tagName === 'SELECT') {
+                element.value = '';
+            }
+        }
     }
 });
