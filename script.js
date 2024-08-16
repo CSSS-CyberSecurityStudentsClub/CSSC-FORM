@@ -14,9 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Trim whitespace and validate inputs
         let isValid = true;
         formData.forEach((value, key) => {
+            const element = signupForm.elements[key];
             value = value.trim(); // Trim spaces from the input
-            if (value === '') {
-                isValid = false; // If any field is empty, set isValid to false
+
+            // Skip validation for textarea (making it optional)
+            if (element.tagName !== 'TEXTAREA' && value === '') {
+                isValid = false; // If any non-textarea field is empty, set isValid to false
             }
             formData.set(key, value); // Update the FormData object with trimmed value
         });
