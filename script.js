@@ -10,6 +10,23 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleLoading(true);
 
         const formData = new FormData(signupForm);
+
+        // Trim whitespace and validate inputs
+        let isValid = true;
+        formData.forEach((value, key) => {
+            value = value.trim(); // Trim spaces from the input
+            if (value === '') {
+                isValid = false; // If any field is empty, set isValid to false
+            }
+            formData.set(key, value); // Update the FormData object with trimmed value
+        });
+
+        if (!isValid) {
+            toggleLoading(false);
+            alert('Please fill out all required fields.');
+            return;
+        }
+
         const formAction = signupForm.action;
 
         fetch(formAction, {
