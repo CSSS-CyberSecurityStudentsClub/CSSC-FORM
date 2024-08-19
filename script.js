@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const countdownElement = document.getElementById('time');
     
     // Target date: August 22, 2024, 12:00 AM
-    const targetDate = new Date('August 22, 2024 00:00:00').getTime();
+    const targetDate = new Date('August 21, 2024 00:00:00').getTime();
 
     // Update the countdown every second
     const countdownInterval = setInterval(() => {
