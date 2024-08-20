@@ -308,3 +308,15 @@ footer {
 #countdown #time {
     font-size: 1em;
 }
+
+#form-section {
+    width: 100%;
+    max-width: 600px;
+}
+
+#closed-message {
+    font-size: 1.5em;
+    color: #ff0000;
+    margin-top: 20px;
+    display: none;
+}

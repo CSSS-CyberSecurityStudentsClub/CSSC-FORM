@@ -91,8 +91,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     const countdownElement = document.getElementById('time');
+    const formSection = document.getElementById('form-section');
+    const closedMessage = document.getElementById('closed-message');
     
-    // Target date: August 22, 2024, 12:00 AM
+    // Target date: August 21, 2024, 12:00 AM
     const targetDate = new Date('August 21, 2024 00:00:00').getTime();
 
     // Update the countdown every second
@@ -109,10 +111,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Display the result
         countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 
-        // If the countdown is over, display zero
+        // If the countdown is over
         if (distance < 0) {
             clearInterval(countdownInterval);
             countdownElement.innerHTML = "0d 0h 0m 0s";
+            formSection.style.display = 'none';
+            closedMessage.style.display = 'block';
         }
     }, 1000);
 });
+
