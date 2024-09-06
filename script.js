@@ -1,64 +1,33 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const signupForm = document.getElementById('signup-form');
-    const submitButton = document.getElementById('submitButton');
-    const loadingSpinner = document.getElementById('loadingSpinner');
-    const successModal = document.getElementById('successModal');
-    const okButton = document.getElementById('okButton');
+const supabaseUrl = 'https://edtlzmjyshstofnskogy.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVkdGx6bWp5c2hzdG9mbnNrb2d5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjU2Mzg2MTUsImV4cCI6MjA0MTIxNDYxNX0.wkrNp4MP5Yhgv3S1kNyav9nTU5eFI4_mT_UxD0UOrbA';
+const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-    signupForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        toggleLoading(true);
+document.getElementById('signup-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-        // Collect form data, including the file
-        const formData = new FormData(signupForm);
-        const resumeFile = signupForm.querySelector('input[type="file"]').files[0];
+    const name = document.getElementById('name').value;
+    const year = document.getElementById('Year').value;
+    const department = document.getElementById('department').value;
+    const resumeFile = document.getElementById('Resume').files[0];
 
-        // Append the file to FormData if it exists
-        if (resumeFile) {
-            formData.append('resumeFile', resumeFile);
-        }
+    // Upload file to Supabase Storage
+    const { data, error } = await supabase.storage.from('resumes').upload(`resume_${name}.pdf`, resumeFile);
 
-        const formAction = signupForm.action;
-
-        fetch(formAction, {
-            method: 'POST',
-            body: formData, // Send the FormData which includes the file
-        })
-        .then(response => response.json())
-        .then(data => {
-            toggleLoading(false);
-            if (data.result === 'success') {
-                showModal();
-                clearForm();
-            } else {
-                alert('Submission failed. Please try again.');
-            }
-        })
-        .catch(error => {
-            toggleLoading(false);
-            console.error('Error:', error);
-            alert('There was an error submitting the form. Please try again later.');
-        });
-    });
-
-    okButton.addEventListener('click', () => {
-        hideModal();
-    });
-
-    function toggleLoading(isLoading) {
-        loadingSpinner.style.display = isLoading ? 'inline-block' : 'none';
-        submitButton.disabled = isLoading;
+    if (error) {
+        alert('Error uploading file');
+        return;
     }
 
-    function showModal() {
-        successModal.style.display = 'block';
-    }
+    // Save form data along with the file URL
+    const resumeUrl = `${supabase.storage.from('resumes').getPublicUrl(`resume_${name}.pdf`).publicURL}`;
 
-    function hideModal() {
-        successModal.style.display = 'none';
-    }
+    const { data: insertData, error: insertError } = await supabase
+        .from('resumes')
+        .insert([{ name, year, department, resume_url: resumeUrl }]);
 
-    function clearForm() {
-        signupForm.reset();
+    if (insertError) {
+        alert('Error submitting form');
+    } else {
+        alert('Form submitted successfully');
     }
 });
