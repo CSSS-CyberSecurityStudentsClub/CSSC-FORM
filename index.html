@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/x-icon" href="images/logo.png">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js"></script>
-    <!-- <script src="https://unpkg.com/@supabase/supabase-js@2"></script> -->
-
 </head>
 
 <body>
@@ -34,39 +32,36 @@
         <div id="countdown-container">
             <div id="countdown"></div>
         </div>
-            <div id="form-section" style="margin: auto;">
-                <form id="signup-form" method="POST">
-                    <h2 style="color: white">Upload Resume</h2>
-                    <div id="countdown"style="color: white;">Closes in <span id="time"> </span></div>
+        <div id="form-section" style="margin: auto;">
+            <form id="signup-form">
+                <h2 style="color: white">Upload Resume</h2>
+                <div id="countdown" style="color: white;">Closes in <span id="time"> </span></div>
 
-                    <label for="name">Full Name:</label>
-                    <input type="text" id="name" name="name" required>
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
 
-                    <label for="Year">Year:</label>
-                    <select id="Year" name="Year" required>
-                        <option value="2nd">2nd</option>
-                        <option value="3rd">3rd</option>
-                        <option value="4th">4th</option>
-                    </select>
+                <label for="Year">Year:</label>
+                <select id="Year" name="Year" required>
+                    <option value="2nd">2nd</option>
+                    <option value="3rd">3rd</option>
+                    <option value="4th">4th</option>
+                </select>
 
-                    <label for="department">Department:</label>
-                    <input type="text" id="department" name="department" required>
-                    
+                <label for="department">Department:</label>
+                <input type="text" id="department" name="department" required>
 
-                    <label for="Resume">Upload Resume:</label>
-                    <input type="file" id="Resume" name="Resume" accept=".pdf, .doc, .docx" required>
+                <label for="Resume">Upload Resume:</label>
+                <input type="file" id="Resume" name="Resume" accept=".pdf, .doc, .docx" required>
 
-
-                    <button type="submit" id="submitButton">
-                        Submit
-                        <span class="loading-spinner" id="loadingSpinner" style="display: none;"></span>
-                    </button>
-                </form>
-            </div>
-            <div id="closed-message" style="display: none;">
-                <p>The form is closed.</p>
-            </div>
-        <!-- </div> -->
+                <button type="submit" id="submitButton">
+                    Submit
+                    <span class="loading-spinner" id="loadingSpinner" style="display: none;"></span>
+                </button>
+            </form>
+        </div>
+        <div id="closed-message" style="display: none;">
+            <p>The form is closed.</p>
+        </div>
     </section>
 
     <!-- Modal Structure -->
@@ -95,7 +90,53 @@
             <p>&copy; 2024 Cyber Security Students Club(ADCET). All rights reserved.</p>
         </div>
     </footer>
-    <script src="script.js" type="module"></script>
+    <script>
+        // Initialize Supabase
+        const { createClient } = supabase;
+        const supabaseUrl = 'https://edtlzmjyshstofnskogy.supabase.co';  // Replace with your Supabase project URL
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVkdGx6bWp5c2hzdG9mbnNrb2d5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjU2Mzg2MTUsImV4cCI6MjA0MTIxNDYxNX0.wkrNp4MP5Yhgv3S1kNyav9nTU5eFI4_mT_UxD0UOrbA';  // Replace with your Supabase public API key
+        const supabase = createClient(supabaseUrl, supabaseKey);
+
+        // Handle form submission
+        document.getElementById('signup-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+
+            // Handle file upload
+            const resumeFile = formData.get('Resume');
+            const { data: fileData, error: fileError } = await supabase.storage
+                .from('resumes')
+                .upload(`public/${resumeFile.name}`, resumeFile);
+
+            if (fileError) {
+                console.error('Error uploading file:', fileError);
+                return;
+            }
+
+            const { data, error } = await supabase
+                .from('resumes')
+                .insert([
+                    {
+                        name: formData.get('name'),
+                        year: formData.get('Year'),
+                        department: formData.get('department'),
+                        resume_url: fileData.Key // Store file URL or path
+                    }
+                ]);
+
+            if (error) {
+                console.error('Error uploading resume details:', error);
+                return;
+            }
+
+            // Show success modal
+            document.getElementById('successModal').style.display = 'block';
+        });
+
+        document.getElementById('okButton').addEventListener('click', () => {
+            document.getElementById('successModal').style.display = 'none';
+        });
+    </script>
 </body>
 
 </html>
