@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Security & Linux Users Club</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="images/logo.png">
+</head>
+
+<body>
+    <section id="hero">
+        <div class="hero-content">
+            <h2>Cyber Security Students Club</h2>
+            <h2>(ADCET)</h2>
+            <p>Join us to explore the world of cyber security, Linux, and open-source technology.</p>
+            <a href="#join" class="cta-button">Apply</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>Welcome to the Cyber Security Student Club (CSSC), a student-led initiative committed to fostering a secure digital environment. At CSSC, we believe that cybersecurity is not just a technical field but a vital practice that impacts every aspect of our connected lives.</p>
+        </div>
+    </section>
+    <section id="about">
+        <div class="container">
+            <h2>Our Mission</h2>
+            <p>Our mission is to Defend, Learn, and Innovate. We aim to empower students with the knowledge and skills necessary to navigate and secure the digital world. Through workshops, seminars, and collaborative projects, we provide a platform for students to explore the dynamic field of cybersecurity.</p>
+        </div>
+    </section>
+    <section id="about">
+        <div class="container">
+            <h2>Collaboration with CSI</h2>
+            <p>We are proud to collaborate with Cyber Security India (CSI) to bring the best resources, training, and opportunities to our members. Together, we strive to make a meaningful impact in the world of cybersecurity.</p>
+        </div>
+    </section>
+    <section id="about">
+        <div class="container">
+            <h2>Join Us</h2>
+            <p>We're seeking passionate members to help manage and grow our Cyber Security Linux Club. As a committee member, you'll play a key role in organizing events, leading projects, and promoting cyber security within our community.</p>
+            <p>Our club welcomes everyone—whether you're experienced or just starting out in cyber security or Linux. Join us, make an impact, and grow alongside a community of learners and enthusiasts. Passion and a willingness to learn are what matter most!</p>
+        </div>
+    </section>
+
+    <!-- Countdown and Form Section -->
+    <section id="join">
+        <div id="countdown-container">
+            <div id="countdown"></div>
+            <div id="form-section">
+                <form id="signup-form"
+                    action="https://script.google.com/macros/s/AKfycbw0sAQ0AP-Z7hfu1HyGBsoTXEcLRCaPFEf4IsaTDhSjEwBdlpXT9HO9PTJLLZwc4T_F/exec"
+                    method="POST">
+                    <h2 style="color: white">Apply Here</h2>
+                    <div id="countdown"style="color: white;">Closes in<span id="time"> </span></div>
+                    <img src="images/form-logo.png" alt="Club Logo"
+                        style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0)"> 
+
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="Phone-Number">Phone Number:</label>
+                    <input type="tel" id="Phone-Number" name="Phone-Number" required pattern="\d{10}"
+                        title="Please enter a 10-digit phone number">
+
+                    <label for="Year">Year:</label>
+                    <input type="number" id="Year" name="Year" required>
+
+                    <label for="department">Department:</label>
+                    <input type="text" id="department" name="department" required>
+
+                    <label for="role">Role of Interest:</label>
+                    <select id="role" name="role" required>
+                        <option value="Vice-President">Vice President</option>
+                        <option value="Secretary">Secretary</option>
+                        <option value="treasurer">Treasurer</option>
+                        <option value="Technical-Head">Technical Head</option>
+                        <option value="Creative-Head">Creative Head</option>
+                        <option value="Member">Member</option>
+                    </select>
+
+                    <label for="message">Why You’re Interested:</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Optional"></textarea>
+
+                    <button type="submit" id="submitButton">
+                        Submit
+                        <span class="loading-spinner" id="loadingSpinner" style="display: none;"></span>
+                    </button>
+                </form>
+            </div>
+            <div id="closed-message" style="display: none;">
+                <p>The form is closed.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Structure -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <h2>Thank You!</h2>
+            <p>Your form has been submitted successfully.</p>
+            <p>Click on the button below to join the WhatsApp group for further updates</p>
+            <button id="okButton" class="ok-button">JOIN</button>
+        </div>
+    </div>
+
+    <section id="contact">
+        <div class="container">
+            <h2 style="color: white;">Contact Us:</h2>
+        </div>
+        <div class="contact-links">
+            <a href="https://chat.whatsapp.com/K8YsAPh67G98PdubGo2TnI" target="_blank" class="contact-link">
+                <img src="images/whatsapp.png" alt="WhatsApp Logo" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0)">
+                <span>Join WhatsApp Group</span>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Cyber Security Students Club(ADCET). All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -129,7 +129,7 @@ section img {
 
 form {
     max-width: 600px;
-    margin: 0px auto;
+    /* margin: 0px auto; */
     text-align: left;
     background: rgba(255, 255, 255, 0.1);
     padding: 30px;

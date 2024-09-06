@@ -9,62 +9,45 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         toggleLoading(true);
 
+        // Collect form data, including the file
         const formData = new FormData(signupForm);
+        const resumeFile = signupForm.querySelector('input[type="file"]').files[0];
 
-        // Trim whitespace and validate inputs
-        let isValid = true;
-        formData.forEach((value, key) => {
-            const element = signupForm.elements[key];
-            value = value.trim(); // Trim spaces from the input
-
-            // Skip validation for textarea (making it optional)
-            if (element.tagName !== 'TEXTAREA' && value === '') {
-                isValid = false; // If any non-textarea field is empty, set isValid to false
-            }
-            formData.set(key, value); // Update the FormData object with trimmed value
-        });
-
-        if (!isValid) {
-            toggleLoading(false);
-            alert('Please fill out all required fields.');
-            return;
+        // Append the file to FormData if it exists
+        if (resumeFile) {
+            formData.append('resumeFile', resumeFile);
         }
 
         const formAction = signupForm.action;
 
         fetch(formAction, {
             method: 'POST',
-            body: formData,
+            body: formData, // Send the FormData which includes the file
         })
         .then(response => response.json())
         .then(data => {
             toggleLoading(false);
             if (data.result === 'success') {
                 showModal();
-                clearForm(); // Manually clears the form inputs
+                clearForm();
             } else {
                 alert('Submission failed. Please try again.');
             }
         })
         .catch(error => {
             toggleLoading(false);
+            console.error('Error:', error);
             alert('There was an error submitting the form. Please try again later.');
         });
     });
 
     okButton.addEventListener('click', () => {
         hideModal();
-        window.location.href = "https://chat.whatsapp.com/K8YsAPh67G98PdubGo2TnI";
     });
 
     function toggleLoading(isLoading) {
-        if (isLoading) {
-            loadingSpinner.style.display = 'inline-block';
-            submitButton.disabled = true;
-        } else {
-            loadingSpinner.style.display = 'none';
-            submitButton.disabled = false;
-        }
+        loadingSpinner.style.display = isLoading ? 'inline-block' : 'none';
+        submitButton.disabled = isLoading;
     }
 
     function showModal() {
@@ -76,48 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function clearForm() {
-        // Get all form elements
-        const elements = signupForm.elements;
-
-        // Iterate over form elements and clear their values
-        for (let i = 0; i < elements.length; i++) {
-            const element = elements[i];
-            if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA' || element.tagName === 'SELECT') {
-                element.value = '';
-            }
-        }
+        signupForm.reset();
     }
 });
-
-document.addEventListener('DOMContentLoaded', () => {
-    const countdownElement = document.getElementById('time');
-    const formSection = document.getElementById('form-section');
-    const closedMessage = document.getElementById('closed-message');
-    
-    // Target date: August 21, 2024, 12:00 AM
-    const targetDate = new Date('August 21, 2024 00:00:00').getTime();
-
-    // Update the countdown every second
-    const countdownInterval = setInterval(() => {
-        const now = new Date().getTime();
-        const distance = targetDate - now;
-
-        // Calculate time components
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        // Display the result
-        countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-
-        // If the countdown is over
-        if (distance < 0) {
-            clearInterval(countdownInterval);
-            countdownElement.innerHTML = "0d 0h 0m 0s";
-            formSection.style.display = 'none';
-            closedMessage.style.display = 'block';
-        }
-    }, 1000);
-});
-
