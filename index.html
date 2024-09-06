@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Now you can send the formData object to the server or process it as needed
             // For example, using fetch to send form data to a server
-            fetch('https://script.google.com/macros/s/AKfycby_XPgGS9GBTnsGe1xo5WTyMW3sD9pljsD-LxZ7c2hDcJNk5_3B0eMRanh_PsSgAoDf/exec', {
+            fetch(formAction, {
                 method: 'POST',
                 body: formData
             }).then(response => response.json())
