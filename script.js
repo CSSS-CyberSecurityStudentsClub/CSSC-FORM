@@ -1,61 +1,45 @@
-import { createClient } from 'jsr:@supabase/supabase-js'
-const supabaseUrl = 'https://edtlzmjyshstofnskogy.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVkdGx6bWp5c2hzdG9mbnNrb2d5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjU2Mzg2MTUsImV4cCI6MjA0MTIxNDYxNX0.wkrNp4MP5Yhgv3S1kNyav9nTU5eFI4_mT_UxD0UOrbA'
-let supabase;
-supabase = createClient(supabaseUrl, supabaseKey)
+// Initialize Supabase
+const { createClient } = supabase;
+const supabaseUrl = 'https://edtlzmjyshstofnskogy.supabase.co';  // Replace with your Supabase project URL
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVkdGx6bWp5c2hzdG9mbnNrb2d5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjU2Mzg2MTUsImV4cCI6MjA0MTIxNDYxNX0.wkrNp4MP5Yhgv3S1kNyav9nTU5eFI4_mT_UxD0UOrbA';  // Replace with your Supabase public API key
+const supabase = createClient(supabaseUrl, supabaseKey);
 
-
-
-// Event listener for form submission
+// Handle form submission
 document.getElementById('signup-form').addEventListener('submit', async (e) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
+    const formData = new FormData(e.target);
 
-    // Get form input values
-    const name = document.getElementById('name').value;
-    const year = document.getElementById('Year').value;
-    const department = document.getElementById('department').value;
-    const resumeFile = document.getElementById('Resume').files[0]; // Get the uploaded file
+    // Handle file upload
+    const resumeFile = formData.get('Resume');
+    const { data: fileData, error: fileError } = await supabase.storage
+        .from('resumes')
+        .upload(`public/${resumeFile.name}`, resumeFile);
 
-    // Show loading spinner
-    document.getElementById('loadingSpinner').style.display = 'inline-block';
-
-    // Upload file to Supabase Storage
-    const { data: fileData, error: fileError } = await supabase
-        .storage
-        .from('resumes') // Supabase storage bucket
-        .upload(`resume_${name}_${Date.now()}`, resumeFile);
-
-    // Check for upload errors
     if (fileError) {
-        alert('Error uploading resume: ' + fileError.message);
+        console.error('Error uploading file:', fileError);
         return;
     }
 
-    // Get public URL for the uploaded resume
-    const resumeUrl = supabase
-        .storage
+    const { data, error } = await supabase
         .from('resumes')
-        .getPublicUrl(fileData.path).publicURL;
-
-    // Insert form data and resume URL into Supabase Database
-    const { data: formData, error: formError } = await supabase
-        .from('resumes') // Your table in Supabase Database
         .insert([
             {
-                name: name,
-                year: year,
-                department: department,
-                resume_url: resumeUrl
+                name: formData.get('name'),
+                year: formData.get('Year'),
+                department: formData.get('department'),
+                resume_url: fileData.Key // Store file URL or path
             }
         ]);
 
-    // Check for form submission errors
-    if (formError) {
-        alert('Error submitting form: ' + formError.message);
-    } else {
-        alert('Form submitted successfully!');
+    if (error) {
+        console.error('Error uploading resume details:', error);
+        return;
     }
 
-    // Hide the loading spinner after submission
-    document.getElementById('loadingSpinner').style.display = 'none';
+    // Show success modal
+    document.getElementById('successModal').style.display = 'block';
+});
+
+document.getElementById('okButton').addEventListener('click', () => {
+    document.getElementById('successModal').style.display = 'none';
 });
