@@ -34,30 +34,34 @@
         <div id="countdown-container">
             <div id="countdown"></div>
         </div>
-        <form id="signup-form" method="POST" action="https://script.google.com/macros/library/d/1rdZ1Wf62jm6Wped4zCfEJxMp8kw0fExsY7zs3ZrdygqFZY1W76J47ZIE/1" enctype="multipart/form-data">
-                <h2 style="color: white">Upload Resume</h2>
-                <div id="countdown" style="color: white;">Closes in <span id="time"> </span></div>
+        <form id="signup-form"
+            action="https://script.google.com/macros/s/AKfycbwCD6whUFAMTxd2_Q6BIGXJKzxzQgkyNTE70fPIDOHm7gGnhkyWUlb3wQV_p9XZ-wdq/exec"
+            method="POST"
+            style="margin: auto;">
+            <h2 style="color: white">Upload Resume</h2>
+            <div id="countdown" style="color: white;">Closes in <span id="time"> </span></div>
 
-                <label for="name">Full Name:</label>
-                <input type="text" id="name" name="name" required>
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="department">Department:</label>
+            <input type="text" id="department" name="department" required>
+            
+            <label for="Year">Year:</label>
+            <select id="Year" name="Year" required>
+                <option value="2nd">2nd</option>
+                <option value="3rd">3rd</option>
+                <option value="4th">4th</option>
+            </select>
+            
+            <label for="Resume">Upload Resume Link</label>
+            <label >(Please Upload resume to google drive and share link)</label>
+            <input type="text" id="Resume" name="Resume" required>
 
-                <label for="Year">Year:</label>
-                <select id="Year" name="Year" required>
-                    <option value="2nd">2nd</option>
-                    <option value="3rd">3rd</option>
-                    <option value="4th">4th</option>
-                </select>
-
-                <label for="department">Department:</label>
-                <input type="text" id="department" name="department" required>
-
-                <label for="Resume">Upload Resume:</label>
-                <input type="file" id="Resume" name="Resume" accept=".pdf, .doc, .docx" required>
-
-                <button type="submit" id="submitButton">
-                    Submit
-                    <span class="loading-spinner" id="loadingSpinner" style="display: none;"></span>
-                </button>
+            <button type="submit" id="submitButton">
+                Submit
+                <span class="loading-spinner" id="loadingSpinner" style="display: none;"></span>
+            </button>
         </form>
         <div id="closed-message" style="display: none;">
             <p>The form is closed.</p>

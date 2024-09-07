@@ -1,62 +1,119 @@
-document.getElementById('signup-form').addEventListener('submit', async function (event) {
-    event.preventDefault(); // Prevent default form submission
+document.addEventListener('DOMContentLoaded', () => {
+    const signupForm = document.getElementById('signup-form');
+    const submitButton = document.getElementById('submitButton');
+    const loadingSpinner = document.getElementById('loadingSpinner');
+    const successModal = document.getElementById('successModal');
+    const okButton = document.getElementById('okButton');
 
-    // Get the form element and its action URL
-    const form = document.getElementById('signup-form');
-    const formAction = form.action; // Get the form's action URL from the HTML
+    signupForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        toggleLoading(true);
 
-    // Get form data
-    const formData = new FormData(form); // Automatically collects all form inputs
+        const formData = new FormData(signupForm);
 
-    // Disable submit button and show loading spinner
-    toggleLoading(true);
+        // Trim whitespace and validate inputs
+        let isValid = true;
+        formData.forEach((value, key) => {
+            const element = signupForm.elements[key];
+            value = value.trim(); // Trim spaces from the input
 
-    try {
-        const response = await fetch(formAction, {
-            method: 'POST',
-            body: formData,
+            formData.set(key, value); // Update the FormData object with trimmed value
         });
 
-        const result = await response.text(); // Expecting text response from Google Apps Script
-
-        // Enable submit button and hide loading spinner
-        toggleLoading(false);
-
-        if (result === 'Success') {
-            showModal();
-            clearForm(); // Manually clear form inputs
-        } else {
-            alert('Submission failed. Please try again.');
+        if (!isValid) {
+            toggleLoading(false);
+            alert('Please fill out all required fields.');
+            return;
         }
-    } catch (error) {
-        console.error('Error:', error);
 
-        // Enable submit button and hide loading spinner
-        toggleLoading(false);
+        const formAction = signupForm.action;
 
-        alert('There was an error submitting the form. Please try again later.');
+        fetch(formAction, {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            toggleLoading(false);
+            if (data.result === 'success') {
+                showModal();
+                clearForm(); // Manually clears the form inputs
+            } else {
+                alert('Submission failed. Please try again.');
+            }
+        })
+        .catch(error => {
+            toggleLoading(false);
+            alert('There was an error submitting the form. Please try again later.');
+        });
+    });
+
+    okButton.addEventListener('click', () => {
+        hideModal();
+        // window.location.href = "https://chat.whatsapp.com/K8YsAPh67G98PdubGo2TnI";
+    });
+
+    function toggleLoading(isLoading) {
+        if (isLoading) {
+            loadingSpinner.style.display = 'inline-block';
+            submitButton.disabled = true;
+        } else {
+            loadingSpinner.style.display = 'none';
+            submitButton.disabled = false;
+        }
+    }
+
+    function showModal() {
+        successModal.style.display = 'block';
+    }
+
+    function hideModal() {
+        successModal.style.display = 'none';
+    }
+
+    function clearForm() {
+        // Get all form elements
+        const elements = signupForm.elements;
+
+        // Iterate over form elements and clear their values
+        for (let i = 0; i < elements.length; i++) {
+            const element = elements[i];
+            if (element.tagName === 'INPUT' || element.tagName === 'SELECT') {
+                element.value = '';
+            }
+        }
     }
 });
 
-// Helper function to toggle loading state
-function toggleLoading(isLoading) {
-    const submitButton = document.getElementById('submitButton');
-    const loadingSpinner = document.getElementById('loadingSpinner');
+document.addEventListener('DOMContentLoaded', () => {
+    const countdownElement = document.getElementById('time');
+    const formSection = document.getElementById('form-section');
+    const closedMessage = document.getElementById('closed-message');
+    
+    // Target date: August 21, 2024, 12:00 AM
+    const targetDate = new Date('September 9, 2024 11:30:00').getTime();
 
-    submitButton.disabled = isLoading;
-    loadingSpinner.style.display = isLoading ? 'inline-block' : 'none';
-}
+    // Update the countdown every second
+    const countdownInterval = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
 
-// Function to clear the form after submission
-function clearForm() {
-    document.getElementById('signup-form').reset();
-}
+        // Calculate time components
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-// Function to show the modal after successful submission
-function showModal() {
-    const modal = document.getElementById('successModal');
-    modal.style.display = 'block';
-    document.getElementById('okButton').addEventListener('click', function () {
-        modal.style.display = 'none';
-    });
-}
+        // Display the result
+        countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+        // If the countdown is over
+        if (distance < 0) {
+            clearInterval(countdownInterval);
+            countdownElement.innerHTML = "0d 0h 0m 0s";
+            formSection.style.display = 'none';
+            closedMessage.style.display = 'block';
+        }
+    }, 1000);
+});
+
