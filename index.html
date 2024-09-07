@@ -34,8 +34,7 @@
         <div id="countdown-container">
             <div id="countdown"></div>
         </div>
-        <div id="form-section" style="margin: auto;">
-            <form id="signup-form" action="https://script.google.com/macros/s/AKfycby_XPgGS9GBTnsGe1xo5WTyMW3sD9pljsD-LxZ7c2hDcJNk5_3B0eMRanh_PsSgAoDf/exec" method="POST" enctype="multipart/form-data">
+        <form id="signup-form" method="POST" action="https://script.google.com/macros/library/d/1rdZ1Wf62jm6Wped4zCfEJxMp8kw0fExsY7zs3ZrdygqFZY1W76J47ZIE/1" enctype="multipart/form-data">
                 <h2 style="color: white">Upload Resume</h2>
                 <div id="countdown" style="color: white;">Closes in <span id="time"> </span></div>
 
@@ -59,8 +58,7 @@
                     Submit
                     <span class="loading-spinner" id="loadingSpinner" style="display: none;"></span>
                 </button>
-            </form>
-        </div>
+        </form>
         <div id="closed-message" style="display: none;">
             <p>The form is closed.</p>
         </div>
@@ -92,42 +90,7 @@
             <p>&copy; 2024 Cyber Security Students Club(ADCET). All rights reserved.</p>
         </div>
     </footer>
-    <script>
-
-document.addEventListener('DOMContentLoaded', function() {
-    var form = document.getElementById('signup-form');
-    if (form) {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Create a FormData object from the form
-            var formData = new FormData(form);
-
-            // Optionally, log the FormData object for debugging
-            for (var [key, value] of formData.entries()) {
-                console.log(key, value);
-            }
-
-            // Now you can send the formData object to the server or process it as needed
-            // For example, using fetch to send form data to a server
-            const formAction = form.action;
-            fetch(formAction, {
-                method: 'POST',
-                body: formData
-            }).then(response => response.json())
-              .then(data => {
-                console.log('Success:', data);
-              })
-              .catch(error => {
-                console.error('Error:', error);
-              });
-        });
-    } else {
-        console.error('Form element not found');
-    }
-});
-
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
