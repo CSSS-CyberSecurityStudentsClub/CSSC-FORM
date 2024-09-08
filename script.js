@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closedMessage = document.getElementById('closed-message');
     
     // Target date: August 21, 2024, 12:00 AM
-    const targetDate = new Date('September 9, 2024 11:30:00').getTime();
+    const targetDate = new Date('September 11, 2024 00:00:00').getTime();
 
     // Update the countdown every second
     const countdownInterval = setInterval(() => {
